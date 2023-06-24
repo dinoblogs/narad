@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narad AI | Powerd by GOD</title>
+    <link rel="shortcut icon" href="static/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+
+
+
+    <style>
+        body {
+            background-color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="msger">
+        <header class="msger-header">
+            <div class="msger-header-title">
+                <i class="fas fa-comment-alt"></i> Narad AI
+            </div>
+            <div class="msger-header-options">
+                <span><i class="fas fa-cog"></i></span>
+            </div>
+        </header>
+
+        <main class="msger-chat" id="all_data">
+
+            <!-- Reciver -->
+            <!-- <div class="msg left-msg">
+                <div class="msg-img" style="background-image: url(static/favicon.png)">
+                </div>
+
+                <div class="msg-bubble">
+                    <div class="msg-info">
+                        <div class="msg-info-name">Narad AI</div>
+                        <div class="msg-info-time">No Available</div>
+                    </div>
+
+                    <div class="msg-text">
+                        Hi, welcome to SimpleChat! Go ahead and send me a message. 😄
+                    </div>
+                </div>
+            </div>
+
+            Sender 
+            <div class="msg right-msg">
+                <div class="msg-img"
+                    style="background-image: url(https://img.freepik.com/free-icon/user_318-159711.jpg)">
+                </div>
+
+                <div class="msg-bubble">
+                    <div class="msg-info">
+                        <div class="msg-info-name">You</div>
+                        <div class="msg-info-time">12:46</div>
+                    </div>
+
+                    <div class="msg-text">
+                        You can change your name in JS section!
+                    </div>
+                </div>
+            </div> -->
+        </main>
+
+        <form action="#" class="msger-inputarea" onsubmit="send();return false">
+            <input type="text" id="msg" class="msger-input" placeholder="Enter your message...">
+            <button type="submit" class="msger-send-btn">Send</button>
+        </form>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script>
+             const done = new Date();
+            const doneHour = done.getHours();
+            const doneMinute = done.getMinutes();
+               before = `
+                <div class="msg-img" style="background-image: url(static/favicon.png)">
+                </div>
+
+                <div class="msg-bubble">
+                <div class="msg-info">
+                <div class="msg-info-name">Narad AI</div>
+                <div class="msg-info-time">${doneHour}:${doneMinute}</div>
+                </div>
+
+                <div class="msg-text">
+                    Hi there! How can I help you today?
+                </div>
+                </div>
+                `
+                const bef = document.createElement("div");
+                bef.classList.add("msg");
+                bef.classList.add("left-msg");
+                bef.setAttribute("id","before");
+                setTimeout(function() {
+                    const element00 = document.getElementById("all_data");
+                element00.appendChild(bef);
+                msg_bef = document.getElementById('before')
+                msg_bef.innerHTML = before
+            }, 1000);
+
+        i = 0
+        r = 0
+        function send() {
+            var audio = {};
+            audio["walk"] = new Audio();
+            audio["walk"].src = "static/income.mp3"
+            audio["walk"].play();
+            const currentDate = new Date();
+            const currentHour = currentDate.getHours();
+            const currentMinute = currentDate.getMinutes();
+            var inp = document.getElementById('msg')
+            inp.disabled = true
+            msg = inp.value
+            msg.value = null
+
+            if (msg == "") {
+                msg.value = null
+            }
+            else {
+                // sender
+                matter_2 = `            <div class="msg right-msg">
+                <div class="msg-img"
+                    style="background-image: url(https://img.freepik.com/free-icon/user_318-159711.jpg)">
+                </div>
+
+                <div class="msg-bubble">
+                    <div class="msg-info">
+                        <div class="msg-info-name">You</div>
+                        <div class="msg-info-time">12:46</div>
+                    </div>
+
+                    <div class="msg-text">
+                        ${msg}
+                    </div>
+                </div>
+            </div>`
+            const div_2 = document.createElement("div");
+                div_2.classList.add("msg");
+                div_2.classList.add("right-msg");
+                div_2.setAttribute("id","msg2-" + r);
+
+                // Adding to list
+                const element_2 = document.getElementById("all_data");
+                element_2.appendChild(div_2);
+                msg_r = document.getElementById('msg2-' + r)
+                msg_r.innerHTML = matter_2
+
+
+                // reciver
+             
+                matter = `
+                <div class="msg-img" style="background-image: url(static/favicon.png)">
+                </div>
+
+                <div class="msg-bubble">
+                <div class="msg-info">
+                <div class="msg-info-name">Narad AI</div>
+                <div class="msg-info-time">${currentHour}:${currentMinute}</div>
+                </div>
+
+                <div class="msg-text">
+                Proccesing...
+                </div>
+                </div>
+                `
+                const div = document.createElement("div");
+                div.classList.add("msg");
+                div.classList.add("left-msg");
+                div.setAttribute("id","msg-" + i);
+                setTimeout(function() {
+                    const element = document.getElementById("all_data");
+                element.appendChild(div);
+                msg_i = document.getElementById('msg-' + i)
+                msg_i.innerHTML = matter
+}, 1000);
+
+                // Adding to list
+       
+
+                $.post("/api",
+                    {
+                        msg: msg,
+                    },
+                    function (data, status) {
+                        // alert("Data: " + data + "\nStatus: " + status);
+                        const currentDate = new Date();
+
+                        const currentHour = currentDate.getHours();
+                        const currentMinute = currentDate.getMinutes();
+                        matter = `
+                    <div class="msg-img" style="background-image: url(static/favicon.png)">
+                </div>
+
+                <div class="msg-bubble">
+                    <div class="msg-info">
+                        <div class="msg-info-name">Narad AI</div>
+                        <div class="msg-info-time">${currentHour}:${currentMinute}</div>
+                    </div>
+
+                    <div class="msg-text">
+                        ${data}
+                    </div>
+                </div>
+                    `
+
+
+                        msg_i = document.getElementById('msg-' + i)
+                        msg_i.innerHTML = matter
+
+                        i = i + 1
+                        r = r + 1
+
+                        // removeing avidence
+                        var inp = document.getElementById('msg')
+                        inp.disabled = false
+                    });
+            }
+        }
+
+        // document.addEventListener('keyup', (event) => {
+        //     if (event.key == 'Enter') {
+        //         send()
+        //     }
+  
+        // });
+    </script>
+</body>
+
+</html>
